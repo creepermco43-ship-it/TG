@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Team TG</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: radial-gradient(ellipse 60% 50% at 50% 80%, rgba(255,106,0,0.07), transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-info { padding-top: 0.5rem; }
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--orange-glow);
+      border: 1px solid var(--orange);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-item-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .contact-item-val {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--white);
+    }
+    .contact-item-val a { color: var(--orange); text-decoration: none; }
+    .contact-item-val a:hover { text-decoration: underline; }
+
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+    }
+    .contact-form h3 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      color: var(--orange);
+    }
+    .submit-btn {
+      width: 100%;
+      background: var(--orange);
+      color: var(--black);
+      border: none;
+      padding: 14px;
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: var(--orange-dim); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* EmailJS setup info box */
+    .setup-notice {
+      background: rgba(255,106,0,0.07);
+      border: 1px solid var(--orange);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+    .setup-notice strong { color: var(--orange); }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <script src="nav.js"></script>
+  <main>
+    <div class="page-hero">
+      <div class="section-label">Reach Out</div>
+      <h1>Contact <span class="accent">Us</span></h1>
+      <p style="color:var(--muted);max-width:480px;margin:1rem auto 0;">
+        Have a question, collab offer, or want to join Team TG? Drop us a message.
+      </p>
+    </div>
+
+    <section class="section">
+      <div class="contact-grid">
+
+        <!-- Left info -->
+        <div class="contact-info reveal">
+          <div class="section-label">Get In Touch</div>
+          <h2 style="margin-bottom:2rem;">We're <span class="accent">Listening</span></h2>
+
+          <div class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-val"><a href="/cdn-cgi/l/email-protection#186c7d79756c7f282d2921587f75797174367b7775"><span class="__cf_email__" data-cfemail="e29687838f9685d2d7d3dba2858f838b8ecc818d8f">[email&#160;protected]</span></a></div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">⬡</div>
+            <div>
+              <div class="contact-item-label">Discord Server</div>
+              <div class="contact-item-val"><a href="https://discord.gg/ZKr66hgzwY" target="_blank">discord.gg/ZKr66hgzwY</a></div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">▶</div>
+            <div>
+              <div class="contact-item-label">Creators</div>
+              <div class="contact-item-val">Martian · Meui · Modak Gaming</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">⚡</div>
+            <div>
+              <div class="contact-item-label">Response Time</div>
+              <div class="contact-item-val">Usually within 24 hours</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right form -->
+        <div class="contact-form reveal">
+          <h3>SEND A MESSAGE</h3>
+
+          <div class="setup-notice" id="emailjs-notice">
+            <strong>📌 Email Setup:</strong> EmailJS public key configure karna hoga — neeche script mein <code>YOUR_PUBLIC_KEY</code> replace karo. Instructions README mein hain.
+          </div>
+
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="c-name" placeholder="e.g. Arjun Singh" required />
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" id="c-email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" id="c-subject" placeholder="e.g. Collab Request / Join Team" required />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="c-message" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button class="submit-btn" id="contact-submit" onclick="submitContact()">SEND MESSAGE</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">TEAM<span style="color:var(--orange)">TG</span></div>
+          <p class="footer-desc">Elite gaming organization across Valorant, BGMI, and Minecraft.</p>
+        </div>
+        <div>
+          <div class="footer-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Community</div>
+          <ul class="footer-links">
+            <li><a href="https://discord.gg/ZKr66hgzwY" target="_blank">Discord</a></li>
+            <li><a href="login.html">Login / Register</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Team TG. All rights reserved.</span>
+        <span style="color:var(--orange);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:2px;">ELITE GAMING ORG</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // ── EMAILJS INIT ─────────────────────────────────────────────
+    // STEP: Replace with your EmailJS public key from emailjs.com
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';   // from EmailJS dashboard
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // from EmailJS dashboard
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    async function submitContact() {
+      const name    = document.getElementById('c-name').value.trim();
+      const email   = document.getElementById('c-email').value.trim();
+      const subject = document.getElementById('c-subject').value.trim();
+      const message = document.getElementById('c-message').value.trim();
+
+      if (!name || !email || !subject || !message) {
+        showToast('Sab fields fill karo!', 'error'); return;
+      }
+
+      const btn = document.getElementById('contact-submit');
+      btn.disabled = true;
+      btn.textContent = 'SENDING...';
+
+      const timestamp = new Date().toLocaleString('en-IN');
+
+      // 1. Discord Webhook
+      const discordEmbed = {
+        title: '📬 New Contact Message — Team TG Website',
+        color: 0xFF6A00,
+        fields: [
+          { name: 'Name', value: name, inline: true },
+          { name: 'Email', value: email, inline: true },
+          { name: 'Subject', value: subject, inline: false },
+          { name: 'Message', value: message, inline: false },
+          { name: 'Time', value: timestamp, inline: false }
+        ],
+        footer: { text: 'Team TG Contact Form' }
+      };
+      await sendWebhook(WEBHOOK_MAIN, discordEmbed);
+      await sendWebhook(WEBHOOK_SEC, discordEmbed);
+
+      // 2. EmailJS (to workforaadarshsingh@gmail.com)
+      try {
+        if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+            to_email: 'workforaadarshsingh@gmail.com'
+          });
+        }
+      } catch (e) { console.warn('EmailJS error:', e); }
+
+      showToast('Message sent! We\'ll reply soon.', 'success');
+      btn.disabled = false;
+      btn.textContent = 'SEND MESSAGE';
+    
