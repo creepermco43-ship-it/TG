@@ -1,0 +1,139 @@
+/* ===== TEAM TG — GLOBAL STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#050505;
+  --dark:#0d0d0d;
+  --gray:#151515;
+  --orange:#FF6B00;
+  --orange2:#ff8c00;
+  --og:#ff6b0020;
+  --white:#f0f0f0;
+  --muted:#777;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+
+/* ── NAVBAR ── */
+#tg-nav{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:64px;
+  background:rgba(5,5,5,.92);
+  border-bottom:1px solid #ff6b0022;
+  backdrop-filter:blur(16px);
+}
+.tg-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.18em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:.1em}
+.tg-logo span{color:var(--orange)}
+.tg-links{display:flex;align-items:center;gap:.2rem;list-style:none}
+.tg-links a{
+  color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:.5rem 1rem;position:relative;transition:color .2s;
+}
+.tg-links a::after{
+  content:'';position:absolute;bottom:0;left:50%;right:50%;
+  height:2px;background:var(--orange);transition:all .3s;
+}
+.tg-links a:hover,
+.tg-links a.active{color:var(--white)}
+.tg-links a:hover::after,
+.tg-links a.active::after{left:1rem;right:1rem}
+.tg-nav-right{display:flex;gap:.6rem;align-items:center}
+.tg-btn-dc{
+  background:var(--orange);color:#000;
+  padding:.42rem 1.2rem;font-family:'Rajdhani',sans-serif;
+  font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+  transition:background .2s;
+}
+.tg-btn-dc:hover{background:var(--orange2)}
+.tg-btn-login{
+  background:transparent;color:var(--white);
+  padding:.42rem 1.1rem;font-family:'Rajdhani',sans-serif;
+  font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border:1px solid #333;cursor:pointer;
+  clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+  transition:all .2s;
+}
+.tg-btn-login:hover{border-color:var(--orange);color:var(--orange)}
+
+/* hamburger */
+.tg-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem}
+.tg-hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s}
+.tg-mobile-menu{
+  display:none;position:fixed;top:64px;left:0;right:0;
+  background:rgba(5,5,5,.98);border-bottom:1px solid #ff6b0022;
+  padding:1rem 2rem 1.5rem;z-index:9998;flex-direction:column;gap:.2rem;
+}
+.tg-mobile-menu a{
+  color:var(--muted);text-decoration:none;font-size:1rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;padding:.7rem 0;
+  border-bottom:1px solid #ffffff06;transition:color .2s;display:block;
+}
+.tg-mobile-menu a:hover,.tg-mobile-menu a.active{color:var(--orange)}
+.tg-mobile-menu .tg-btn-dc{margin-top:.8rem;display:inline-block;clip-path:none;text-align:center;padding:.7rem}
+
+/* ── UTILITIES ── */
+.tg-label{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.25em;color:var(--orange);text-transform:uppercase;margin-bottom:.8rem}
+.tg-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:.04em;line-height:.92}
+.tg-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,5rem);letter-spacing:.04em;line-height:.95}
+.tg-h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:.06em}
+.tg-orange{color:var(--orange)}
+.tg-muted{color:var(--muted)}
+.tg-section{padding:6rem 4rem;position:relative}
+.tg-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,107,0,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,107,0,.035) 1px,transparent 1px);
+  background-size:55px 55px;
+  mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 30%,transparent 100%);
+}
+.tg-reveal{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.tg-reveal.vis{opacity:1;transform:none}
+.tg-d1{transition-delay:.1s}.tg-d2{transition-delay:.2s}.tg-d3{transition-delay:.3s}
+
+/* buttons */
+.tg-primary{
+  display:inline-block;background:var(--orange);color:#000;
+  padding:.8rem 2.2rem;font-family:'Rajdhani',sans-serif;
+  font-weight:700;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
+  transition:background .25s,transform .25s;
+}
+.tg-primary:hover{background:var(--orange2);transform:translateY(-2px)}
+.tg-secondary{
+  display:inline-block;background:transparent;color:var(--white);
+  padding:.8rem 2.2rem;font-family:'Rajdhani',sans-serif;
+  font-weight:600;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;border:1px solid #444;cursor:pointer;
+  clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
+  transition:all .25s;
+}
+.tg-secondary:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px)}
+
+/* footer */
+#tg-footer{
+  background:var(--dark);border-top:1px solid #ff6b0018;
+  padding:2.5rem 4rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;
+}
+.tg-footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.14em;color:var(--white)}
+.tg-footer-logo span{color:var(--orange)}
+.tg-footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.tg-footer-links a{color:var(--muted);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.tg-footer-links a:hover{color:var(--orange)}
+.tg-footer-copy{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:#3a3a3a;letter-spacing:.08em}
+
+@media(max-width:768px){
+  #tg-nav{padding:0 1.2rem}
+  .tg-links{display:none}
+  .tg-nav-right .tg-btn-login{display:none}
+  .tg-hamburger{display:flex}
+  .tg-section{padding:4rem 1.2rem}
+  #tg-footer{padding:2rem 1.2rem;flex-direction:column;text-align:center}
+  .tg-footer-links{justify-content:center}
+}

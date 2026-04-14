@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contact — Team TG</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:9rem 4rem 4rem;border-bottom:1px solid #ff6b0015;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,107,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,0,.03) 1px,transparent 1px);background-size:50px 50px}
+#contact-wrap{background:var(--black)}
+.cg{display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start}
+.ci-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.06em;margin-bottom:1rem}
+.ci-title span{color:var(--orange)}
+.ci-p{color:var(--muted);font-size:.95rem;line-height:1.8;margin-bottom:1.8rem}
+.ci-links{display:flex;flex-direction:column;gap:.8rem}
+.ci-item{display:flex;align-items:center;gap:.9rem;padding:.9rem 1.1rem;border:1px solid #ffffff07;background:var(--dark);transition:all .3s;text-decoration:none;color:inherit}
+.ci-item:hover{border-color:var(--orange);background:#0d0d0d}
+.ci-icon{font-size:1.4rem;width:36px;text-align:center;flex-shrink:0}
+.ci-name{font-weight:600;font-size:.92rem;letter-spacing:.07em}
+.ci-val{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--muted);margin-top:.15rem}
+.form-box{background:var(--dark);border:1px solid #ff6b0015;padding:2.5rem}
+.form-box h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.07em;margin-bottom:.3rem}
+.form-sub{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.12em;margin-bottom:2rem}
+.fg{margin-bottom:1.2rem}
+.fl{display:block;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
+.fi,.fta{width:100%;background:#050505;border:1px solid #1e1e1e;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:.95rem;padding:.8rem .95rem;outline:none;transition:border-color .2s;resize:none}
+.fi:focus,.fta:focus{border-color:var(--orange)}
+.fi::placeholder,.fta::placeholder{color:#2a2a2a}
+.fta{height:120px;line-height:1.6}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fsub{width:100%;background:var(--orange);color:#000;padding:.9rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);margin-top:.3rem}
+.fsub:hover{background:#ff8c00}
+.fsub:disabled{opacity:.5;cursor:not-allowed}
+.fmsg{display:none;padding:.85rem 1rem;font-family:'Share Tech Mono',monospace;font-size:.75rem;margin-top:.8rem}
+.fmsg-ok{background:#0F6E5612;border:1px solid #0F6E5635;color:#6bcb77}
+.fmsg-err{background:#ff000012;border:1px solid #ff000030;color:#ff5555}
+@media(max-width:768px){
+  .page-hero{padding:7rem 1.2rem 3rem}
+  .tg-section{padding:4rem 1.2rem}
+  .cg{grid-template-columns:1fr;gap:2.5rem}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav id="tg-nav"></nav>
+<div class="tg-mobile-menu" id="tg-mobile"></div>
+
+<div class="page-hero">
+  <div class="tg-label">// Get In Touch</div>
+  <div class="tg-h1">CONTACT <span class="tg-orange">US</span></div>
+  <p style="color:var(--muted);margin-top:1.2rem;max-width:440px;line-height:1.7">Collab idea, sponsorship, or just want to say hi? We'd love to hear from you.</p>
+</div>
+
+<section id="contact-wrap" class="tg-section">
+  <div class="cg">
+    <div class="tg-reveal">
+      <div class="ci-title">REACH <span>TG</span></div>
+      <p class="ci-p">Whether you're a brand, player, or fan — our inbox is always open.</p>
+      <div class="ci-links">
+        <a href="https://discord.gg/ZKr66hgzwY" target="_blank" class="ci-item">
+          <span class="ci-icon">💬</span>
+          <div><div class="ci-name">Discord</div><div class="ci-val">discord.gg/ZKr66hgzwY</div></div>
+        </a>
+        <a href="/cdn-cgi/l/email-protection#cbbca4b9a0ada4b9aaaaafaab9b8a3b8a2a5aca38baca6aaa2a7e5a8a4a6" class="ci-item">
+          <span class="ci-icon">📧</span>
+          <div><div class="ci-name">Email</div><div class="ci-val"><span class="__cf_email__" data-cfemail="364159445d5059445757525744455e455f58515e76515b575f5a1855595b">[email&#160;protected]</span></div></div>
+        </a>
+        <a href="https://www.twitch.tv/martianislive" target="_blank" class="ci-item">
+          <span class="ci-icon">🟣</span>
+          <div><div class="ci-name">Twitch</div><div class="ci-val">twitch.tv/martianislive</div></div>
+        </a>
+        <div class="ci-item">
+          <span class="ci-icon">📸</span>
+          <div><div class="ci-name">Instagram</div><div class="ci-val">Coming Soon</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-box tg-reveal tg-d1">
+      <h3>SEND A MESSAGE</h3>
+      <div class="form-sub">// Replies within 24 hours</div>
+      <div class="frow">
+        <div class="fg"><label class="fl">Your Name</label><input type="text" class="fi" id="cn" placeholder="Your name"></div>
+        <div class="fg"><label class="fl">Your Email</label><input type="email" class="fi" id="ce" placeholder="your@email.com"></div>
+      </div>
+      <div class="fg"><label class="fl">Subject</label><input type="text" class="fi" id="cs" placeholder="Collaboration / Question / Other"></div>
+      <div class="fg"><label class="fl">Message</label><textarea class="fta" id="cm" placeholder="Write your message..."></textarea></div>
+      <button class="fsub" id="csub" onclick="sendContact()">Send Message →</button>
+      <div class="fmsg fmsg-ok" id="fok">✅ Message sent! We'll reply within 24 hours.</div>
+      <div class="fmsg fmsg-err" id="ferr">❌ Something went wrong. Try Discord or email us directly.</div>
+    </div>
+  </div>
+</section>
+
+<footer id="tg-footer"></footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// EmailJS credentials
+const EJS_KEY = 'bshMeiaUrLoO7YljZ';
+const EJS_SVC = 'service_3wy5uga';
+const EJS_TPL = 'template_t6q9smp';
+emailjs.init(EJS_KEY);
+
+// Discord webhook
+const WH = 'https://discord.com/api/webhooks/1484918907486863563/ditR6C24MbwY3UIAMG9-SRp04mMxrGt3cYhN_lQjHx7iMYoBeFhHvwOwd1eZS0azhL8T';
+
+async function sendContact() {
+  const n = document.getElementById('cn').value.trim();
+  const e = document.getElementById('ce').value.trim();
+  const s = document.getElementById('cs').value.trim();
+  const m = document.getElementById('cm').value.trim();
+  if (!n || !e || !s || !m) { alert('Please fill all fields!'); return; }
+
+  const btn = document.getElementById('csub');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  document.getElementById('fok').style.display = 'none';
+  document.getElementById('ferr').style.display = 'none';
+
+  const ts = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+  // Discord notification
+  try {
+    await fetch(WH, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'Team TG Contact',
+        embeds: [{
+          title: '📩 New Contact Message',
+          color: 0xFF6B00,
+          fields: [
+            { name: '👤 Name', value: n, inline: true },
+            { name: '📧 Email', value: e, inline: true },
+            { name: '📌 Subject', value: s },
+            { name: '💬 Message', value: m },
+            { name: '🕐 Time (IST)', value: ts }
+          ],
+          footer: { text: 'Team TG · Contact Form' }
+        }]
+      })
+    });
+  } catch (err) { console.log('Discord error:', err); }
+
+  // EmailJS — sends to workforaadarshsingh@gmail.com via template
+  try {
+    await emailjs.send(EJS_SVC, EJS_TPL, {
+      from_name: n,
+      from_email: e,
+      subject: s,
+      message: m,
+      to_email: 'workforaadarshsingh@gmail.com'
+    });
+  } catch (err) { console.log('EmailJS error:', err); }
+
+  document.getElementById('fok').style.display = 'block';
+  btn.textContent = 'Sent ✓';
+  ['cn'

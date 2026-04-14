@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sponsors — Team TG</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:9rem 4rem 4rem;border-bottom:1px solid #ff6b0015;position:relative;overflow:hidden;text-align:center}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,107,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,0,.03) 1px,transparent 1px);background-size:50px 50px}
+#sponsors-main{background:var(--black)}
+
+/* SQUARE SPONSOR CARDS GRID */
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:#ff6b000e;margin-top:3rem}
+.sp-card{background:var(--dark);padding:2.2rem 1.5rem;position:relative;overflow:hidden;transition:background .3s,transform .3s;text-align:center;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sp-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,107,0,.06),transparent);opacity:0;transition:opacity .35s}
+.sp-card:hover::before{opacity:1}
+.sp-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--orange);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.sp-card:hover::after{transform:scaleX(1)}
+.sp-card:hover{background:#0f0f0f;transform:translateY(-3px)}
+.sp-icon{font-size:2.2rem;margin-bottom:.8rem;display:block;filter:grayscale(1);transition:filter .3s}
+.sp-card:hover .sp-icon{filter:none}
+.sp-type-tag{display:inline-block;font-size:.56rem;font-weight:700;letter-spacing:.16em;padding:.14rem .55rem;text-transform:uppercase;font-family:'Share Tech Mono',monospace;border:1px solid #ff6b0030;background:#ff6b000d;color:var(--orange);margin-bottom:.6rem}
+.sp-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;line-height:1;margin-bottom:.2rem}
+.sp-name span{color:var(--orange)}
+.sp-desc{color:var(--muted);font-size:.76rem;line-height:1.6;margin-bottom:.8rem}
+.sp-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.62rem;font-weight:600;letter-spacing:.1em;color:var(--orange);font-family:'Share Tech Mono',monospace;text-decoration:none;text-transform:uppercase;transition:gap .2s}
+.sp-link:hover{gap:.6rem}
+
+/* DETAIL CARDS (full info below grid) */
+.sp-detail-list{display:flex;flex-direction:column;gap:2px;margin-top:2px}
+.sp-detail{background:var(--dark);padding:2.5rem 3rem;position:relative;overflow:hidden;transition:background .3s;border-left:3px solid var(--orange)}
+.sp-detail:hover{background:#0d0d0d}
+.sp-detail-inner{display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.sp-detail-icon{font-size:3rem;flex-shrink:0}
+.sp-detail-content{flex:1;min-width:220px}
+.sp-detail-tag{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.18em;padding:.16rem .65rem;text-transform:uppercase;font-family:'Share Tech Mono',monospace;border:1px solid #ff6b0030;background:#ff6b000d;color:var(--orange);margin-bottom:.7rem}
+.sp-detail-name{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.08em;line-height:.9;margin-bottom:.3rem}
+.sp-detail-name span{color:var(--orange)}
+.sp-detail-sub{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem}
+.sp-detail-desc{color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:1.1rem}
+.sp-perks{list-style:none}
+.sp-perks li{display:flex;align-items:center;gap:.7rem;padding:.4rem 0;border-bottom:1px solid #ffffff04;font-size:.8rem;color:#777}
+.sp-perks li::before{content:'▸';color:var(--orange);font-size:.7rem;flex-shrink:0}
+
+/* FORM */
+#sponsor-form-sec{background:var(--dark);border-top:1px solid #ff6b0015}
+.sf-wrap{max-width:680px;margin:0 auto;text-align:center}
+.sf-box{background:var(--black);border:1px solid #ff6b001a;padding:3rem;margin-top:3rem;text-align:left}
+.sf-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.07em;margin-bottom:.3rem}
+.sf-sub{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.12em;margin-bottom:2rem}
+.sf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sfg{margin-bottom:1rem}
+.sfl{display:block;font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.sfi,.sfta,.sfsel{width:100%;background:#050505;border:1px solid #1e1e1e;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:.9rem;padding:.75rem .9rem;outline:none;transition:border-color .2s;resize:none}
+.sfi:focus,.sfta:focus,.sfsel:focus{border-color:var(--orange)}
+.sfi::placeholder,.sfta::placeholder{color:#2a2a2a}
+.sfsel option{background:var(--dark)}
+.sfta{height:110px;line-height:1.6}
+.sf-submit{width:100%;background:var(--orange);color:#000;padding:.9rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);margin-top:.5rem}
+.sf-submit:hover{background:#ff8c00}
+.sf-submit:disabled{opacity:.5}
+.sf-ok{display:none;background:#0F6E5612;border:1px solid #0F6E5635;color:#6bcb77;padding:.85rem 1rem;font-family:'Share Tech Mono',monospace;font-size:.75rem;margin-top:.8rem}
+.sf-err{display:none;background:#ff000012;border:1px solid #ff000030;color:#ff5555;padding:.85rem 1rem;font-family:'Share Tech Mono',monospace;font-size:.75rem;margin-top:.8rem}
+@media(max-width:768px){
+  .page-hero,.tg-section{padding-left:1.2rem;padding-right:1.2rem}
+  .sp-grid{grid-template-columns:1fr 1fr}
+  .sp-card{aspect-ratio:unset;padding:1.8rem 1.2rem}
+  .sp-detail{padding:2rem 1.5rem}
+  .sp-detail-inner{flex-direction:column;gap:1rem}
+  .sf-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav id="tg-nav"></nav>
+<div class="tg-mobile-menu" id="tg-mobile"></div>
+<div class="page-hero">
+  <div class="tg-label" style="text-align:center">// Our Partners</div>
+  <div class="tg-h1">SPON<span class="tg-orange">SORS</span></div>
+  <p style="color:var(--muted);margin-top:1.2rem;max-width:460px;line-height:1.7;margin-left:auto;margin-right:auto">The brands that believe in Team TG's vision of elite Indian gaming.</p>
+</div>
+
+<section id="sponsors-main" class="tg-section">
+  <!-- 4 square cards at top -->
+  <div class="tg-reveal" style="text-align:center;margin-bottom:1rem">
+    <div class="tg-label" style="text-align:center">// Partner Overview</div>
+    <div class="tg-h2" style="text-align:center">OUR <span class="tg-orange">PARTNERS</span></div>
+  </div>
+  <div class="sp-grid">
+    <div class="sp-card tg-reveal">
+      <span class="sp-icon">🚀</span>
+      <div class="sp-type-tag">Gaming Partner</div>
+      <div class="sp-name">Take<span>U</span>forward</div>
+      <div class="sp-desc">Elite gaming partner leveling up the whole team.</div>
+      <a href="#takeuforward" class="sp-link">Details →</a>
+    </div>
+    <div class="sp-card tg-reveal tg-d1">
+      <span class="sp-icon">🖥️</span>
+      <div class="sp-type-tag">Hosting Provider</div>
+      <div class="sp-name">DRAGO <span>HOST</span></div>
+      <div class="sp-desc">Powering Team TG's online world with fast hosting.</div>
+      <a href="#dragohost" class="sp-link">Details →</a>
+    </div>
+    <div class="sp-card tg-reveal tg-d2">
+      <span class="sp-icon">💡</span>
+      <div class="sp-type-tag">Hosting Provider</div>
+      <div class="sp-name">MORADO <span>SOLUTION</span></div>
+      <div class="sp-desc">The infrastructure backbone of Team TG's digital ops.</div>
+      <a href="#morado" class="sp-link">Details →</a>
+    </div>
+    <div class="sp-card tg-reveal tg-d3" style="border:1px dashed #ff6b0030;background:transparent">
+      <span class="sp-icon">🤝</span>
+      <div class="sp-type-tag">Open Slot</div>
+      <div class="sp-name">YOUR <span>BRAND</span></div>
+      <div class="sp-desc">Partner with Team TG. Reach India's growing gaming community.</div>
+      <a href="#sponsor-form-sec" class="sp-link">Become a Partner →</a>
+    </div>
+  </div>
+
+  <!-- Full detail cards below -->
+  <div class="sp-detail-list" style="margin-top:4rem">
+    <div class="tg-label" style="margin-bottom:1.5rem">// Partner Details</div>
+    <div class="sp-detail tg-reveal" id="takeuforward">
+      <div class="sp-detail-inner">
+        <span class="sp-detail-icon">🚀</span>
+        <div class="sp-detail-content">
+          <span class="sp-detail-tag">Gaming Partner</span>
+          <div class="sp-detail-name">Take<span>U</span>forward</div>
+          <div class="sp-detail-sub">// Leveling Up Indian Gaming</div>
+          <div class="sp-detail-desc">TakeUforward is Team TG's proud gaming partner. Their belief in our organization has been a cornerstone of our growth — from content creation to competitive play.</div>
+          <ul class="sp-perks">
+            <li>Featured partner across all official Team TG content</li>
+            <li>Co-branded campaigns and social media integrations</li>
+            <li>Priority partner for all major Team TG events</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sp-detail tg-reveal" id="dragohost">
+      <div class="sp-detail-inner">
+        <span class="sp-detail-icon">🖥️</span>
+        <div class="sp-detail-content">
+          <span class="sp-detail-tag">Hosting Provider</span>
+          <div class="sp-detail-name">DRAGO <span>HOST</span></div>
+          <div class="sp-detail-sub">// Powering Our Digital World</div>
+          <div class="sp-detail-desc">Drago Host provides the powerful hosting infrastructure behind Team TG's online operations. From our Minecraft server to web hosting, Drago Host keeps Team TG online — fast and stable.</div>
+          <ul class="sp-perks">
+            <li>Hosts Team TG's official Minecraft server</li>
+            <li>Web hosting and domain support</li>
+            <li>99.9% uptime guarantee for all TG services</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sp-detail tg-reveal" id="morado">
+      <div class="sp-detail-inner">
+        <span class="sp-detail-icon">💡</span>
+        <div class="sp-detail-content">
+          <span class="sp-detail-tag">Hosting Provider</span>
+          <div class="sp-detail-name">MORADO <span>SOLUTION</span></div>
+          <div class="sp-detail-sub">// Infrastructure Behind The Scenes</div>
+          <div class="sp-detail-desc">Morado Solution provides the technical backbone of Team TG's digital ecosystem. Their advanced hosting solutions ensure our platforms and tools run smoothly — so we can focus on gaming.</div>
+          <ul class="sp-perks">
+            <li>Backend infrastructure for Team TG platforms</li>
+            <li>Technical support and server management</li>
+            <li>Scalable solutions for TG's growing community</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sponsor-form-sec" class="tg-section">
+  <div class="sf-wrap">
+    <div class="tg-reveal">
+      <div class="tg-label" style="text-align:center">// Become a Partner</div>
+      <div class="tg-h2" style="text-align:center">SPONSOR <span class="tg-orange">TEAM TG</span></div>
+      <p style="color:var(--muted);font-size:.92rem;line-height:1.7;margin-top:1rem">Fill the form — we respond within 48 hours.</p>
+    </div>
+    <div class="sf-box tg-reveal">
+      <div class="sf-title">SPONSORSHIP INQUIRY</div>
+      <div class="sf-sub">// We'll review and respond within 48 hours</div>
+      <div class="sf-row">
+        <div class="sfg"><label class="sfl">Company / Brand</label><input type="text" class="sfi" id="sp-co" placeholder="Your brand name"></div>
+        <div class="sfg"><label class="sfl">Contact Name</label><input type="text" class="sfi" id="sp-nm" placeholder="Your name"></div>
+      </div>
+      <div class="sf-row">
+        <div class="sfg"><label class="sfl">Email</label><input type="email" class="sfi" id="sp-em" placeholder="contact@brand.com"></div>
+        <div class="sfg"><label class="sfl">Budget Range</label>
+          <select class="sfsel" id="sp-bg"><option value="">Select range</option><option>Under ₹10,000</option><option>₹10,000 – ₹50,000</option><option>₹50,000 – ₹1,00,000</option><option>₹1,00,000+</option></select>
+        </div>
+      </div>
+      <div class="sfg"><label class="sfl">Type</label>
+        <select class="sfsel" id="sp-ty"><option value="">Select type</option><option>Logo Placement</option><option>Content Integration</option><option>Event Sponsorship</option><option>Full Partnership</option><option>Other</option></select>
+      </div>
+      <div class="sfg"><label class="sfl">Message</label><textarea class="sfta" id="sp-ms" placeholder="Tell us about your brand..."></textarea></div>
+      <button class="sf-submit" id="sp-sub" onclick="submitSponsor()">Submit Inquiry →</button>
+      <div class="sf-ok" id="sp-ok">✅ Inquiry received! We'll contact you within 48 hours.</div>
+      <div class="sf-err" id="sp-err">❌ Something went wrong. Try again or message us on Discord.</div>
+    </div>
+  </div>
+</section>
+<footer id="tg-footer"></footer>
+<script src="nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+const EJS_KEY='bshMeiaUrLoO7YljZ';
+const EJS_SVC='service_3wy5uga';
+const EJS_TPL='template_t6q9smp';
+emailjs.init(EJS_KEY);
+const WH='https://discord.com/api/webhooks/1484918907486863563/ditR6C24MbwY3UIAMG9-SRp04mMxrGt3cYhN_lQjHx7iMYoBeFhHvwOwd1eZS0azhL8T';
+async function submitSponsor(){
+  const co=document.getElementById('sp-co').value.trim(),nm=document.getElementById('sp-nm').value.trim(),em=document.getElementById('sp-em').value.trim(),bg=document.getElementById('sp-bg').value,ty=document.getElementById('sp-ty').value,ms=document.getElementById('sp-ms').value.trim();
+  if(!co||!nm||!em||!bg||!ty){alert('Please fill all required fields!');return}
+  const btn=document.getElementById('sp-sub');btn.disabled=true;btn.textContent='Submitting...';
+  const ts=new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
+  try{
+    await fetch(WH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'Team TG Sponsors',embeds:[{title:'💰 New Sponsorship Inquiry!',color:0xFFD700,fields:[{name:'🏢 Company',value:co,inline:true},{name:'👤 Contact',value:nm,inline:true},{name:'📧 Email',value:em,inline:true},{name:'💵 Budget',value:bg,inline:true},{name:'📋 Type',value:ty,inline:true},{name:'💬 Message',value:ms||'—'},{name:'🕐 Time',value:ts}],footer:{text:'Team TG · Sponsor Form'}}]})});
+    // EmailJS notification
+    try {
+      await emailjs.send(EJS_SVC, EJS_TPL, {
+        from_name: nm,
+        from_email: em,
+        subject: '💰 New Sponsorship Inquiry — ' + co,
+        message: '🏢 Company: ' + co + '\n👤 Contact: ' + nm + '\n📧 Email: ' + em + '\n💵 Budget: ' + bg + '\n📋 Type: ' + ty + '\n💬 Message: ' + (ms||'—') + '\n🕐 Time: ' + ts,
+        to_email: 'workforaadarshsingh@gmail.com'
+      });
+    } catch(err){ console.log('EmailJS:', err); }
+    document.getElementById('sp-ok').style.display='block';btn.textContent='Submitted ✓';
+    ['sp-co','sp-nm','sp-em','sp-ms'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('sp-bg').value='';document.getElementById('sp-ty').value='';
+    setTimeout(()=>{btn.disabled=false;btn.textContent='Submit Inquiry →';document.getElementById('sp-ok').style.display='none'},6000);
+  }catch(e){document.getElementById('sp-err').style.display='block';btn.disabled=false;btn.textContent='Submit Inquiry →'}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Games — Team TG</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{padding:9rem 4rem 4rem;border-bottom:1px solid #ff6b0015;position:relative;overflow:hidden;text-align:center}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,107,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,107,0,.03) 1px,transparent 1px);background-size:50px 50px}
+.tabs{display:flex;background:var(--dark);border-bottom:2px solid #ff6b0020;position:sticky;top:64px;z-index:100;overflow-x:auto;justify-content:center}
+.tab{background:none;border:none;color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;padding:1.1rem 2.5rem;cursor:pointer;transition:all .2s;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab.active,.tab:hover{color:var(--white)}.tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.gsec{display:none;padding:4rem 4rem 5rem;animation:fd .35s ease}.gsec.active{display:block}
+@keyframes fd{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.gsec-top{text-align:center;margin-bottom:3rem}
+.gsec-emoji{font-size:3rem;display:block;margin-bottom:.6rem}
+.gsec-desc{color:var(--muted);font-size:.92rem;line-height:1.8;max-width:520px;margin:.8rem auto 0;text-align:center}
+
+/* DIVIDER */
+.sec-label{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.8rem}
+.sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:#ff6b0018}
+.sec-label span{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--orange);letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+
+/* HERO CARD */
+.hero-creator{display:grid;grid-template-columns:1fr 1.6fr;gap:0;background:var(--dark);border:1px solid #ff6b001a;overflow:hidden;position:relative;margin-bottom:2px}
+.hero-creator::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--orange),transparent)}
+.hero-img-col{position:relative;overflow:hidden;aspect-ratio:4/5;max-height:580px}
+.hero-img-col img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.hero-creator:hover .hero-img-col img{transform:scale(1.04)}
+.hero-img-fallback{position:absolute;inset:0;background:linear-gradient(135deg,#111,#1e1e1e);display:none;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:6rem;color:var(--orange)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,var(--dark) 100%);pointer-events:none}
+.hero-info{padding:3rem 3.5rem 3rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.22em;color:var(--orange);text-transform:uppercase;margin-bottom:.8rem}
+.hero-badge::before{content:'';width:22px;height:1px;background:var(--orange)}
+.hero-rank-tag{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#3a3a3a;letter-spacing:.2em;margin-bottom:.4rem}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,4.5vw,4.8rem);letter-spacing:.04em;line-height:.88;margin-bottom:.4rem}
+.hero-name span{color:var(--orange)}
+.hero-real{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.14em;margin-bottom:1rem;display:block}
+.hero-pills{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.gpill{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:.22rem .65rem;border:1px solid}
+.gpill-v{color:#ff7070;border-color:#ff4d4d30;background:#ff4d4d0a}
+.gpill-b{color:var(--orange);border-color:#ff6b0030;background:#ff6b000a}
+.gpill-m{color:#6bcb77;border-color:#6bcb7730;background:#6bcb770a}
+.hero-bio{color:#666;font-size:.88rem;line-height:1.78;max-width:380px;margin-bottom:1.8rem}
+.hero-socials{display:flex;gap:.4rem;flex-wrap:wrap}
+.hsoc{display:inline-flex;align-items:center;gap:.35rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:.5rem 1.1rem;border:1px solid;transition:all .22s}
+.hsoc svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+.hsoc:hover{transform:translateY(-2px)}
+.hs-yt{color:#ff4444;border-color:#ff444432;background:#ff00000e}.hs-yt:hover{background:#ff000018;border-color:#ff4444}
+.hs-ig{color:#e1306c;border-color:#e1306c32;background:#e1306c0e}.hs-ig:hover{background:#e1306c18;border-color:#e1306c}
+.hs-tw{color:#9146ff;border-color:#9146ff32;background:#9146ff0e}.hs-tw:hover{background:#9146ff18;border-color:#9146ff}
+.hs-dc{color:#7289da;border-color:#5865f232;background:#5865f20e}.hs-dc:hover{background:#5865f218;border-color:#7289da}
+
+/* TEAM GRID - 3 cards below */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#ff6b000e}
+.tcard{background:var(--black);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background .3s,transform .3s}
+.tcard:hover{background:#0c0c0c;transform:translateY(-4px)}
+.tcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.tcard:hover::after{transform:scaleX(1)}
+/* 4:5 portrait = 1080x1350 */
+.tcard-wrap{width:100%;aspect-ratio:4/5;overflow:hidden;position:relative;flex-shrink:0}
+.tcard-img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.tcard:hover .tcard-img{transform:scale(1.06)}
+.tcard-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(5,5,5,.95) 100%);pointer-events:none}
+.tcard-fallback{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#111,#1e1e1e);display:none;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--orange);flex-shrink:0}
+.tcard-rbadge{position:absolute;top:14px;left:14px;font-family:'Share Tech Mono',monospace;font-size:.55rem;color:var(--orange);letter-spacing:.2em;background:rgba(5,5,5,.85);border:1px solid #ff6b0032;padding:.18rem .55rem;backdrop-filter:blur(6px);z-index:2}
+.tcard-body{padding:1.3rem 1.6rem 1.8rem;display:flex;flex-direction:column;flex:1}
+.tcard-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.06em;line-height:1;margin-bottom:.1rem}
+.tcard-role{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.6rem;display:block}
+.tcard-bio{color:#555;font-size:.8rem;line-height:1.65;flex:1;margin-bottom:1.1rem}
+.tcard-socs{display:flex;gap:.35rem;flex-wrap:wrap}
+.tsoc{display:inline-flex;align-items:center;gap:.28rem;font-size:.6rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;padding:.3rem .65rem;border:1px solid;transition:all .2s;white-space:nowrap}
+.tsoc svg{width:10px;height:10px;fill:currentColor;flex-shrink:0}
+.ts-yt{color:#ff4444;border-color:#ff444428;background:#ff000010}.ts-yt:hover{background:#ff00001e;border-color:#ff4444}
+.ts-ig{color:#e1306c;border-color:#e1306c28;background:#e1306c10}.ts-ig:hover{background:#e1306c1e;border-color:#e1306c}
+.ts-tw{color:#9146ff;border-color:#9146ff28;background:#9146ff10}.ts-tw:hover{background:#9146ff1e;border-color:#9146ff}
+.ts-dc{color:#7289da;border-color:#5865f228;background:#5865f210}.ts-dc:hover{background:#5865f21e;border-color:#7289da}
+
+/* MC SERVER */
+.mc-server-section{margin-top:4rem;border-top:1px solid #ff6b0015;padding-top:4rem}
+.server-header{text-align:center;margin-bottom:2.5rem}
+.server-box{background:var(--dark);border:1px solid #6bcb7722;padding:2.5rem;position:relative;overflow:hidden}
+.server-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#6bcb77,transparent)}
+.server-status-row{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.server-status-pill{display:flex;align-items:center;gap:.6rem;background:#6bcb770d;border:1px solid #6bcb7728;padding:.4rem 1.1rem}
+.status-dot{width:8px;height:8px;border-radius:50%;animation:pd 2s infinite;flex-shrink:0}
+.dot-online{background:#6bcb77;box-shadow:0 0 8px #6bcb77}.dot-offline{background:#ff4444;box-shadow:0 0 8px #ff4444}.dot-check{background:#ffaa00;box-shadow:0 0 8px #ffaa00}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.3)}}
+.status-text{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.15em}
+.server-info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#ffffff07;margin-bottom:2rem}
+.si{background:var(--dark);padding:1.2rem 1.5rem;text-align:center}
+.si-l{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
+.si-v{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.06em}
+.si-v.og{color:var(--orange)}.si-v.gn{color:#6bcb77}
+.copy-ip-btn{display:inline-flex;align-items:center;gap:.5rem;background:#6bcb770d;border:1px solid #6bcb7728;color:#6bcb77;font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.14em;padding:.45rem 1.2rem;text-transform:uppercase;cursor:pointer;transition:all .2s;margin:0 auto;display:block;width:fit-content}
+.copy-ip-btn:hover{background:#6bcb7720;border-color:#6bcb77}
+.mc-dc-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--black);border:1px solid #5865f220;padding:2rem;margin-top:1.5rem}
+.mc-dc-t{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;margin-bottom:.2rem}
+.mc-dc-s{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.1em}
+.mc-dc-btn{display:inline-flex;align-items:center;gap:.5rem;background:#5865f210;border:1px solid #5865f228;color:#7289da;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:.6rem 1.5rem;transition:all .2s}
+.mc-dc-btn:hover{background:#5865f220;border-color:#7289da}
+
+@media(max-width:960px){
+  .hero-creator{grid-template-columns:1fr}
+  .hero-img-col{max-height:420px;aspect-ratio:4/3}
+  .hero-overlay{background:linear-gradient(to bottom,transparent 50%,var(--dark) 100%)}
+  .hero-info{padding:2rem}
+}
+@media(max-width:768px){
+  .page-hero,.gsec{padding-left:1.2rem;padding-right:1.2rem}
+  .tabs{justify-content:flex-start}.tab{padding:.9rem 1.2rem}
+  .team-grid{grid-template-columns:1fr}
+  .server-info-grid{grid-template-columns:1fr 1fr}
+  .mc-dc-row{flex-direction:column;text-align:center}
+  .hero-name{font-size:2.6rem}
+}
+</style>
+</head>
+<body>
+<nav id="tg-nav"></nav>
+<div class="tg-mobile-menu" id="tg-mobile"></div>
+
+<div class="page-hero">
+  <div class="tg-label" style="text-align:center">// Battle Grounds</div>
+  <div class="tg-h1">OUR <span class="tg-orange">GAMES</span></div>
+  <p style="color:var(--muted);margin-top:1.2rem;max-width:460px;line-height:1.7;margin-left:auto;margin-right:auto">Three arenas. One team. Dominating Valorant, BGMI &amp; Minecraft.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('valorant',this)">🎯 &nbsp;Valorant</button>
+  <button class="tab" onclick="show('bgmi',this)">🔫 &nbsp;BGMI</button>
+  <button class="tab" onclick="show('minecraft',this)">⛏️ &nbsp;Minecraft</button>
+</div>
+
+<!-- VALORANT -->
+<div class="gsec active" id="s-valorant">
+  <div class="gsec-top tg-reveal">
+    <span class="gsec-emoji">🎯</span>
+    <div class="tg-label" style="text-align:center">// Tactical FPS</div>
+    <div class="tg-h2" style="text-align:center">VALO<span class="tg-orange">RANT</span></div>
+    <p class="gsec-desc">Precision. Strategy. Domination. Team TG's Valorant creators deliver elite content every drop.</p>
+  </div>
+  <div id="val-hero"></div>
+  <div style="margin-top:2rem">
+    <div class="sec-label"><span>// Rest Of The Squad</span></div>
+    <div class="team-grid" id="val-team"></div>
+  </div>
+</div>
+
+<!-- BGMI -->
+<div class="gsec" id="s-bgmi">
+  <div class="gsec-top tg-reveal">
+    <span class="gsec-emoji">🔫</span>
+    <div class="tg-label" style="text-align:center">// Battle Royale</div>
+    <div class="tg-h2" style="text-align:center">BG<span class="tg-orange">MI</span></div>
+    <p class="gsec-desc">Clutch plays. Squad wipes. Raw survival. Team TG's BGMI creators go hard every single game.</p>
+  </div>
+  <div id="bgmi-hero"></div>
+  <div style="margin-top:2rem">
+    <div class="sec-label"><span>// Rest Of The Squad</span></div>
+    <div class="team-grid" id="bgmi-team"></div>
+  </div>
+</div>
+
+<!-- MINECRAFT -->
+<div class="gsec" id="s-minecraft">
+  <div class="gsec-top tg-reveal">
+    <span class="gsec-emoji">⛏️</span>
+    <div class="tg-label" style="text-align:center">// Creative &amp; Survival</div>
+    <div class="tg-h2" style="text-align:center">MINE<span class="tg-orange">CRAFT</span></div>
+    <p class="gsec-desc">Team TG's Minecraft division brings the most entertaining content to India. Join our official server.</p>
+  </div>
+  <div class="mc-server-section tg-reveal">
+    <div class="server-header">
+      <div class="tg-label" style="text-align:center">// Join The World</div>
+      <div class="tg-h2" style="text-align:center">OUR <span class="tg-orange">SERVER</span></div>
+    </div>
+    <div class="server-box">
+      <div class="server-status-row">
+        <div class="server-status-pill">
+          <span class="status-dot dot-check" id="status-dot"></span>
+          <span class="status-text" id="status-label" style="color:var(--muted)">Checking status...</span>
+        </div>
+        <span style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.1em">DemonCore MC · Team TG Official</span>
+      </div>
+      <div class="server-info-grid">
+        <div class="si"><div class="si-l">Server IP</div><div class="si-v og">play.demoncoremc.fun</div></div>
+        <div class="si"><div class="si-l">Port</div><div class="si-v">25579</div></div>
+        <div class="si"><div class="si-l">Players Online</div><div class="si-v gn" id="player-count">—</div></div>
+        <div class="si"><div class="si-l">Version</div><div class="si-v" id="mc-ver">Java</div></div>
+      </div>
+      <button class="copy-ip-btn" id="copy-ip" onclick="copyIP()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy IP — play.demoncoremc.fun:25579
+      </button>
+    </div>
+    <div class="mc-dc-row">
+      <div><div class="mc-dc-t">MINECRAFT DISCORD</div><div class="mc-dc-s">// Get server updates, events &amp; connect with players</div></div>
+      <a href="https://discord.gg/ZKr66hgzwY" target="_blank" class="mc-dc-btn">
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:#7289da"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        Join MC Discord
+      </a>
+    </div>
+  </div>
+  <div style="margin-top:4rem;border-top:1px solid #ff6b0015;padding-top:3rem">
+    <div class="sec-label" style="margin-bottom:2rem"><span>// Content Creators</span></div>
+    <div id="mc-hero"></div>
+    <div style="margin-top:2rem">
+      <div class="sec-label"><span>// Rest Of The Squad</span></div>
+      <div class="team-grid" id="mc-team"></div>
+    </div>
+  </div>
+</div>
+
+<footer id="tg-footer"></footer>
+<script src="nav.js"></script>
+<script>
+/* SVG ICONS */
+const YT='<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>';
+const IG='<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>';
+const TW='<svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>';
+const DC='<svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>';
+const DCU='https://discord.gg/ZKr66hgzwY';
+const FB="if(!this.src.endsWith('images/temp.jpg')){this.src='images/temp.jpg'}else{this.style.display='none';this.nextSibling.style.display='flex'}";
+
+/* CREATOR DATA */
+const MARTIAN={
+  img:'images/martian.jpg',ini:'ML',real:'Aadarsh Singh',
+  name:'MARTIAN IS LIVE',
+  games:['BGMI','Valorant','Minecraft'],
+  bio:'The alien who landed to dominate. Elite content creator across BGMI, Valorant &amp; Minecraft. The face and leader of Team TG.',
+  yt:'https://youtube.com/@martianislive0666',
+  ig:'https://www.instagram.com/martianislive/',
+  tw:'https://www.twitch.tv/martianislive'
+};
+const DANGER={
+  img:'images/danger.jpg',ini:'TD',rank:'RANK #02',
+  name:'TS Danger',role:'Valorant Creator',
+  bio:'Valorant precision at its finest. Elite tactical gameplay and highlights every drop.',
+  yt:'https://www.youtube.com/@YTDANGEROP',
+  ig:'https://www.instagram.com/tsdanger._/',
+  tw:'https://www.twitch.tv/tsdanger'
+};
+const MEUI={
+  img:'images/meui.jpg',ini:'ME',rank:'RANK #02',
+  name:'Meui Is Live',role:'BGMI Specialist',
+  bio:'BGMI specialist with raw gameplay and unmatched energy. Pure skill, peak entertainment.',
+  yt:'https://www.youtube.com/@meui_official',
+  ig:'https://www.instagram.com/meui_official_/',
+  tw:'https://www.twitch.tv/meui_official'
+};
+const MODAK={
+  img:'images/modak.jpg',ini:'MG',rank:'RANK #03',
+  name:'Modak Gaming',role:'Minecraft Specialist',
+  bio:'Minecraft mastery and creative storytelling. Every Modak video is a new adventure.',
+  yt:'https://www.youtube.com/@modakgaming6300',
+  ig:null,
+  tw:'https://www.twitch.tv/modakgaming'
+};
+
+/* HERO CARD */
+function heroCard(d,games){
+  const pills=games.map(g=>
+    g==='Valorant'?'<span class="gpill gpill-v">Valorant</span>':
+    g==='BGMI'?'<span class="gpill gpill-b">BGMI</span>':
+    '<span class="gpill gpill-m">Minecraft</span>'
+  ).join('');
+  let s=`<a href="${d.yt}" target="_blank" class="hsoc hs-yt">${YT}YouTube</a>`;
+  if(d.ig)s+=`<a href="${d.ig}" target="_blank" class="hsoc hs-ig">${IG}Instagram</a>`;
+  if(d.tw)s+=`<a href="${d.tw}" target="_blank" class="hsoc hs-tw">${TW}Twitch</a>`;
+  s+=`<a href="${DCU}" target="_blank" class="hsoc hs-dc">${DC}Discord</a>`;
+  return`<div class="hero-creator tg-reveal">
+  <div class="hero-img-col">
+    <img src="${d.img}" alt="${d.name}" onerror="${FB}" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s">
+    <div class="hero-img-fallback">${d.ini}</div>
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-info">
+    <div class="hero-badge"><span>Team TG · Creator #01</span></div>
+    <div class="hero-rank-tag">// TEAM LEADER</div>
+    <div class="hero-name">${d.name.split(' IS ').join('<br><span>IS ')}${d.name.includes(' IS ')?'</span>':''}</div>
+    <span class="hero-real">${d.real}</span>
+    <div class="hero-pills">${pills}</div>
+    <p class="hero-bio">${d.bio}</p>
+    <div class="hero-socials">${s}</div>
+  </div>
+</div>`;
+}
+
+/* TEAM CARD */
+function teamCard(d,delay){
+  const dl=delay?` tg-d${delay}`:'';
+  let s=`<a href="${d.yt}" target="_blank" class="tsoc ts-yt">${YT}YouTube</a>`;
+  if(d.ig)s+=`<a href="${d.ig}" target="_blank" class="tsoc ts-ig">${IG}Instagram</a>`;
+  if(d.tw)s+=`<a href="${d.tw}" target="_blank" class="tsoc ts-tw">${TW}Twitch</a>`;
+  s+=`<a href="${DCU}" target="_blank" class="tsoc ts-dc">${DC}Discord</a>`;
+  return`<div class="tcard tg-reveal${dl}">
+  <div class="tcard-wrap">
+    <img src="${d.img}" class="tcard-img" alt="${d.name}" onerror="${FB}">
+    <div class="tcard-fallback">${d.ini}</div>
+    <div class="tcard-overlay"></div>
+    <div class="tcard-rbadge">[ ${d.rank} ]</div>
+  </div>
+  <div class="tcard-body">
+    <div class="tcard-name">${d.name}</div>
+    <span class="tcard-role">${d.role}</span>
+    <div class="tcard-bio">${d.bio}</div>
+    <div class="tcard-socs">${s}</div>
+  </div>
+</div>`;
+}
+
+/* BUILD GRIDS */
+// Valorant: Martian hero + Danger below (solo, max width 480px centered)
+document.getElementById('val-hero').innerHTML=heroCard(MARTIAN,['Valorant','BGMI','Minecraft']);
+const vt=document.getElementById('val-team');
+vt.innerHTML=teamCard(DANGER,0);
+vt.style.cssText='display:grid;grid-template-columns:minmax(0,480px);gap:2px;background:transparent;justify-content:center';
+
+// BGMI: Martian hero + Meui below
+document.getElementById('bgmi-hero').innerHTML=heroCard(MARTIAN,['BGMI','Valorant','Minecraft']);
+const bt=document.getElementById('bgmi-team');
+bt.innerHTML=teamCard(MEUI,0);
+bt.style.cssText='display:grid;grid-template-columns:minmax(0,480px);gap:2px;background:transparent;justify-content:center';
+
+// Minecraft: Martian hero + Meui + Modak below (2 columns)
+document.getElementById('mc-hero').innerHTML=heroCard(MARTIAN,['Minecraft','BGMI','Valorant']);
+const mt=document.getElementById('mc-team');
+mt.innerHTML=teamCard(MEUI,0)+teamCard(MODAK,1);
+mt.style.gridTemplateColumns='repeat(2,1fr)';
+
+/* TABS */
+function show(id,btn){
+  document.querySelectorAll('.gsec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  btn.classList.add('active');
+  setTimeout(()=>document.querySelectorAll('#s-'+id+' .tg-reveal').forEach(el=>el.classList.add('vis')),60);
+  if(id==='minecraft')checkServer();
+}
+setTimeout(()=>document.querySelectorAll('#s-valorant .tg-reveal').forEach(el=>el.classList.add('vis')),120);
+const hash=location.hash.replace('#','');
+if(hash){const b=document.querySelector(`[onclick*="${hash}"]`);if(b)b.click();}
+
+/* SERVER */
+async function checkServer(){
+  const dot=document.getElementById('status-dot'),lbl=document.getElementById('status-label'),pc=document.getElementById('player-count'),ver=document.getElementById('mc-ver');
+  try{
+    const r=await fetch('https://api.mcsrvstat.us/3/play.demoncoremc.fun:25579');
+    const d=await r.json();
+    if(d.online){dot.className='status-dot dot-online';lbl.textContent='Online';lbl.style.color='#6bcb77';pc.textContent=(d.players?.online||0)+' / '+(d.players?.max||100);if(d.version)ver.textContent=d.version;}
+    else{dot.className='status-dot dot-offline';lbl.textContent='Offline';lbl.style.color='#ff4444';pc.textContent='0';}
+  }catch(e){dot.className='status-dot dot-offline';lbl.textContent='Status unavailable';lbl.style.color='#ffaa00';}
+}
+function copyIP(){
+  navigator.clipboard.writeText('play.demoncoremc.fun').then(()=>{
+    const btn=document.getElementById('copy-ip'),orig=btn.innerHTML;
+    btn.textContent='Copied ✓';setTimeout(()=>btn.innerHTML=orig,2500);
+  });
+}
+</script>
+</body>
+</html>
